@@ -20,4 +20,10 @@ class CalcTests {
 		Calc calc = new Calc();
 		assertEquals(calc.Add("3,52"), 55);
 	}
+	
+	@Test
+	public void multipleDigitsTest() {
+		Calc calc = new Calc();
+		assertEquals(calc.Add("0,4,12,3,5,6"), 30);
+	}
 }
