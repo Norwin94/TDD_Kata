@@ -4,7 +4,7 @@ public class Calc {
 		public int Add(String text) {
 	        if(text.isEmpty()) return 0;
 	        
-			String[] splitText = text.split(",");
+			String[] splitText = text.split(",|\n");
 			int digitsLength = splitText.length;
 	        if (digitsLength == 1) return Integer.parseInt(text);
 	        else {

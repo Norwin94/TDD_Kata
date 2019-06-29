@@ -26,4 +26,12 @@ class CalcTests {
 		Calc calc = new Calc();
 		assertEquals(calc.Add("0,4,12,3,5,6"), 30);
 	}
+	
+	@Test
+	public void multipleDigitsWithNewLineTest() {
+		Calc calc = new Calc();
+		assertEquals(calc.Add("0\n4,12\n3,5\n6"), 30);
+	}
+	
+	
 }
