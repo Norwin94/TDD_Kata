@@ -9,7 +9,7 @@ public class Calc {
 	        if(text.isEmpty()) return 0;
 	        
 	        String newDelimeter = ",";
-	        Matcher signMatcher = Pattern.compile("^//(.)\n([\\s\\S]*)").matcher(text);
+	        Matcher signMatcher = Pattern.compile("^//(.*)\n([\\s\\S]*)").matcher(text);
 	        if(signMatcher.matches()) {
 	        	newDelimeter = signMatcher.group(1);
 	        	text = signMatcher.group(2);
@@ -32,4 +32,5 @@ public class Calc {
 		private int toInt(String text) {
 			return Integer.parseInt(text);
 		}
+	
 }

@@ -56,4 +56,11 @@ class CalcTests {
 		Calc calc = new Calc();
 		 assertEquals(calc.Add("//;\n1;4;2\n3000;5\n10001"), 12);
 	}
+	
+	@Test
+	public void delimetersLengthExtentionTest() throws Exception {
+		Calc calc = new Calc();
+		 assertEquals(calc.Add("//;;;\n1;;;4\n2"), 7);
+	}
+	
 }
