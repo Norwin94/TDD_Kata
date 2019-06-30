@@ -63,4 +63,10 @@ class CalcTests {
 		 assertEquals(calc.Add("//;;;\n1;;;4\n2"), 7);
 	}
 	
+	@Test
+	public void longMultipleDelimetersTest() throws Exception {
+		Calc calc = new Calc();
+		 assertEquals(calc.Add("//[l][n][;]\n1l2n3;4"), 10);
+	}
+	
 }

@@ -8,13 +8,30 @@ public class Calc {
 		public int Add(String text) throws Exception {
 	        if(text.isEmpty()) return 0;
 	        
-	        String newDelimeter = ",";
+	        String newDelimiter = ",";
+	        
 	        Matcher signMatcher = Pattern.compile("^//(.*)\n([\\s\\S]*)").matcher(text);
-	        if(signMatcher.matches()) {
-	        	newDelimeter = signMatcher.group(1);
-	        	text = signMatcher.group(2);
+	        Matcher multiSignMatcher = Pattern.compile("^//\\[(.*)\\]\n([\\s\\S]*)").matcher(text);
+	        
+	        if(multiSignMatcher.matches()) {
+		        String multiDelimiters = "";
+	        	newDelimiter = multiSignMatcher.group(1);
+	    		String[] dell = newDelimiter.split("\\]\\[");
+			    for(int i = 0; i < dell.length; i++) {
+			    	if(i == dell.length - 1)	multiDelimiters +=  dell[i];
+			    	else multiDelimiters +=  dell[i] + "|";
+			    }     
+			    newDelimiter = multiDelimiters;
+			    text = multiSignMatcher.group(2);
 	        }
-	        String textSplitSigns = newDelimeter + "|\n";
+	        else  {
+	        	if(signMatcher.matches()) {
+		        	newDelimiter = signMatcher.group(1);
+		        	text = signMatcher.group(2);
+		        }
+	        }
+	        
+	        String textSplitSigns = newDelimiter + "|\n";
 			String[] splitText = text.split(textSplitSigns);
 			int digitsLength = splitText.length;
 			
@@ -33,4 +50,9 @@ public class Calc {
 			return Integer.parseInt(text);
 		}
 	
+		public static void main(String[] args) throws Exception {
+			Calc calc = new Calc();
+			System.out.println(calc.Add("//[l][n][;;]\n1l2n3;;4"));
+		}
+		
 }
