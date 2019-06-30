@@ -49,6 +49,11 @@ class CalcTests {
 	public void negativesExceptionTest() throws Exception {
 		Calc calc = new Calc();
 		 assertThrows(Exception.class, () -> calc.Add("//;\n1;-4;2\n3;-5\n6"));
-
+	}
+	
+	@Test
+	public void ignoreBigNumbers() throws Exception {
+		Calc calc = new Calc();
+		 assertEquals(calc.Add("//;\n1;4;2\n3000;5\n10001"), 12);
 	}
 }

@@ -22,6 +22,7 @@ public class Calc {
 			    int sum = 0;
 			    for(int i = 0; i < digitsLength; i++) {
 			    	if(toInt(splitText[i]) < 0) negativeNumbers.add(splitText[i]);
+			    	if(toInt(splitText[i]) > 1000) continue;
 			        sum += toInt(splitText[i]);
 			    }
 			    if(!negativeNumbers.isEmpty()) throw new RuntimeException("negatives not allowed: " + negativeNumbers.toString());
@@ -31,5 +32,4 @@ public class Calc {
 		private int toInt(String text) {
 			return Integer.parseInt(text);
 		}
-	
 }
