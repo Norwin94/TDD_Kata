@@ -1,41 +1,54 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import org.junit.Rule;
 import org.junit.jupiter.api.Test;
+import org.junit.rules.ExpectedException;
 
 class CalcTests {
-	
+	 @Rule
+	  public final ExpectedException exception = ExpectedException.none();
+	 
 	@Test
-	public void emptyStringTest() {
+	public void emptyStringTest() throws Exception {
 		Calc calc = new Calc();
 		assertEquals(calc.Add(""), 0);
 	}
 
 	@Test
-	public void oneDigitTest() {
+	public void oneDigitTest() throws Exception {
 		Calc calc = new Calc();
 		assertEquals(calc.Add("12"), 12);
 	}
 	
 	@Test
-	public void twoDigitsTest() {
+	public void twoDigitsTest() throws Exception {
 		Calc calc = new Calc();
 		assertEquals(calc.Add("3,52"), 55);
 	}
 	
 	@Test
-	public void multipleDigitsTest() {
+	public void multipleDigitsTest() throws Exception {
 		Calc calc = new Calc();
 		assertEquals(calc.Add("0,4,12,3,5,6"), 30);
 	}
 	
 	@Test
-	public void multipleDigitsWithNewLineTest() {
+	public void multipleDigitsWithNewLineTest() throws Exception {
 		Calc calc = new Calc();
 		assertEquals(calc.Add("0\n4,12\n3,5\n6"), 30);
 	}
 	
 	@Test
-	public void newKindOfDelimiterTest() {
+	public void newKindOfDelimiterTest() throws Exception {
 		Calc calc = new Calc();
 		assertEquals(calc.Add("//;\n1;4;2\n3;5\n6"), 21);
+	}
+	
+	@Test
+	public void negativesExceptionTest() throws Exception {
+		Calc calc = new Calc();
+		 assertThrows(Exception.class, () -> calc.Add("//;\n1;-4;2\n3;-5\n6"));
+
 	}
 }

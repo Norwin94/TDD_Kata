@@ -1,9 +1,11 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Calc {
 	
-		public int Add(String text) {
+		public int Add(String text) throws Exception {
 	        if(text.isEmpty()) return 0;
 	        
 	        String newDelimeter = ",";
@@ -16,14 +18,14 @@ public class Calc {
 			String[] splitText = text.split(textSplitSigns);
 			int digitsLength = splitText.length;
 			
-	        if (digitsLength == 1) return toInt(text);
-	        
-			else {
-		    int sum = 0;
-		    for(int i = 0; i < digitsLength; i++)
-	        sum += toInt(splitText[i]);
-	        return sum;
-	        }
+	        	List <String> negativeNumbers = new ArrayList<String>();
+			    int sum = 0;
+			    for(int i = 0; i < digitsLength; i++) {
+			    	if(toInt(splitText[i]) < 0) negativeNumbers.add(splitText[i]);
+			        sum += toInt(splitText[i]);
+			    }
+			    if(!negativeNumbers.isEmpty()) throw new RuntimeException("negatives not allowed: " + negativeNumbers.toString());
+		        return sum;
 		}
 
 		private int toInt(String text) {
