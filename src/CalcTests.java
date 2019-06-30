@@ -33,5 +33,9 @@ class CalcTests {
 		assertEquals(calc.Add("0\n4,12\n3,5\n6"), 30);
 	}
 	
-	
+	@Test
+	public void newKindOfDelimiterTest() {
+		Calc calc = new Calc();
+		assertEquals(calc.Add("//;\n1;4;2\n3;5\n6"), 21);
+	}
 }
